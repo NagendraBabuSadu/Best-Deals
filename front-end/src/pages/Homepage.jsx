@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import PhoneInput from "react-phone-input-2";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -25,8 +24,6 @@ import "react-phone-input-2/lib/style.css";
 import modernHouse from "../assets/images/modern-house.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { setData } from "../features/user/userSlice";
-
-
 
 export default function Homepage() {
   const validationSchema = yup.object().shape({
@@ -67,8 +64,6 @@ export default function Homepage() {
   });
 
   const [sentMail, setSentMail] = useState(false);
-
-
 
   const onSubmit = (data) => {
     data.preventDefault;
@@ -118,206 +113,185 @@ export default function Homepage() {
     setOpen(false);
   };
 
-  // const isValid = !v
-
   return (
-    <React.Fragment>
-
-      <CssBaseline />
-     
-      <div 
-        id="home"
-        style={{
-          backgroundImage: `url(${modernHouse})`, // ✅ Correct syntax
-          backgroundSize: "cover", // Ensures it covers the entire container
-          backgroundPosition: "center", // Centers the image
-          backgroundRepeat: "no-repeat", // Prevents repeating
-          height: "100vh", // Adjust height as needed
-          position: "relative",
+    <div
+      id="home"
+      className="section"
+      style={{
+        backgroundImage: `url(${modernHouse})`,
+        backgroundSize: "cover", 
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "100vh", 
+        position: "relative",
+      }}
+    >
+      <Box
+        sx={{
+          position: "absolute",
+          width: "100%",
+          height: "80vh",
+          background:
+          "linear-gradient(to top, rgba(0,1, 1, 0), rgba(0, 0, 1,1))",
+          opacity: 0.7, 
+          zIndex: 0, 
+        }}
+      />
+      <Container
+        sx={{
+          textAlign: "center",
+          textWrap: "pretty",
+          position: "absolute",
         }}
       >
-  
-        <Box
+        <Typography
+          variant="h2"
           sx={{
-            position: "absolute",
-            width: "100%",
-            height: "30vh",
-            background:
-              "linear-gradient(to top, rgba(0,1, 1, 0), rgba(0, 0, 1,1))",
-            opacity: 0.7, // Adjust opacity if needed
-            zIndex: 0, // Stays above the image
-          }}
-        />
-        <Container
-          sx={{
-            textAlign: "center",
-            textWrap: "pretty",
-            position: "absolute",
+            color: "white",
+            mt: "6rem",
           }}
         >
+          Transform Your Space <br />
+          <strong style={{ color: "red" }}>Elevate Your Life</strong>
+        </Typography>
+      </Container>
+
+      <Container
+        sx={{
+          textAlign: "left",
+          textWrap: "pretty",
+          position: "absolute",
+          top: "20%",
+          left: "70%",
+          transform: "translate(-50%, 0%)",
+          display: "flex",
+          border: "0.5rem solid var(--green-color)",
+          backgroundColor: "white",
+          width: "22%",
+          flexDirection: "column",
+          p: "1.6rem 2rem",
+          borderRadius: "2rem 2rem",
+          boxShadow: "0rem 0rem 3rem 1rem",
+        }}
+      >
+        <Box sx={{}}>
           <Typography
-            variant="h2"
+            variant="h4"
+            m="1rem 0rem"
+            fontWeight="600"
             sx={{
-              color: "white",
-              mt: "2rem",
+              color: "var(--red-color)",
             }}
           >
-            Transform Your Space <br />
-            <strong style={{ color: "red" }}>
-              Elevate Your Life
-            </strong>
+            Contact Us
           </Typography>
-        </Container>
-
-        <Container
-          sx={{
-            textAlign: "left",
-            textWrap: "pretty",
-            position: "absolute",
-            top: "20%",
-            left: "70%",
-            transform: "translate(-50%, 0%)",
-            display: "flex",
-            border: "0.5rem solid var(--green-color)",
-            backgroundColor: "white",
-            width: "22%",
-            flexDirection: "column",
-            p: "1.6rem 2rem",
-            borderRadius: "2rem 2rem",
-            boxShadow: "0rem 0rem 3rem 1rem",
-          }}
-        >
-          <Box
-            sx={{
-        
-            }}
-          >
-            <Typography
-              variant="h4"
-              m="1rem 0rem"
-              fontWeight="600"
-              sx={{
-                color: "var(--red-color)",
-              }}
+          <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
+            <FormControl
+              sx={{ pb: "1.4rem", width: "100%" }}
+              error={Boolean(errors.name)}
             >
-              Contact Us
-            </Typography>
-            <Box
-              component="form"
-              onSubmit={handleSubmit(onSubmit)}
-              noValidate
-            >
-              <FormControl
-                sx={{ pb: "1.4rem", width: "100%" }}
+              <TextField
+                id="user-nameInput"
+                label="Name"
+                variant="outlined"
+                placeholder="Enter Your Name"
+                fullWidth
+                {...register("name")}
                 error={Boolean(errors.name)}
-              >
-                <TextField
-                  id="user-nameInput"
-                  label="Name"
-                  variant="outlined"
-                  placeholder="Enter Your Name"
-                  fullWidth
-                  {...register("name")}
-                  // value={formData.name}
-                  // onChange={handleChange}
-                  error={Boolean(errors.name)}
-                  helperText={errors.name?.message}
-                />
-              </FormControl>
-              <FormControl
-                sx={{ pb: "1.4rem", width: "100%" }}
+                helperText={errors.name?.message}
+              />
+            </FormControl>
+            <FormControl
+              sx={{ pb: "1.4rem", width: "100%" }}
+              error={Boolean(errors.email)}
+            >
+              <TextField
+                id="user-emailInput"
+                label="Email"
+                variant="outlined"
+                fullWidth
+                placeholder="Enter Your Email"
+                {...register("email")}
                 error={Boolean(errors.email)}
-              >
-                <TextField
-                  id="user-emailInput"
-                  label="Email"
-                  variant="outlined"
-                  fullWidth
-                  placeholder="Enter Your Email"
-                  {...register("email")}
-                  error={Boolean(errors.email)}
-                  helperText={errors.email?.message}
-                />
-              </FormControl>
-              <FormControl
-                sx={{ pb: "1.4rem", width: "100%" }}
+                helperText={errors.email?.message}
+              />
+            </FormControl>
+            <FormControl
+              sx={{ pb: "1.4rem", width: "100%" }}
+              error={Boolean(errors.message)}
+            >
+              <TextField
+                id="user-emailInput"
+                label="Details"
+                variant="outlined"
+                placeholder="Enter Your Details"
+                multiline
+                minRows={3}
+                InputProps={{
+                  sx: {
+                    padding: "1rem 0.8rem", // Adjust padding as needed
+                    textWrap: "pretty",
+                  },
+                }}
+                fullWidth
+                {...register("message")}
                 error={Boolean(errors.message)}
-              >
-                <TextField
-                  id="user-emailInput"
-                  label="Details"
-                  variant="outlined"
-                  placeholder="Enter Your Details"
-                  multiline
-                  minRows={3}
-                  InputProps={{
-                    sx: {
-                      padding: "1rem 0.8rem", // Adjust padding as needed
-                      textWrap: "pretty",
-                    },
-                  }}
-                  fullWidth
-                  // value={formData.email}
-                  // onChange={handleChange}
-                  {...register("message")}
-                  error={Boolean(errors.message)}
-                  helperText={errors.message?.message}
-                />
-              </FormControl>
-              <Button
-                variant="contained"
-                color="success"
-                type="submit"
-                onClick={handleClickOpen}
-              >
-                Send Email
-              </Button>
-              {sentMail === true ? (
-                <div>
-                  <Dialog
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                  >
-                    <DialogTitle id="alert-dialog-title">
-                      Email has been sent successfully.
-                    </DialogTitle>
-                    <DialogContent>
-                      <DialogContentText id="alert-dialog-description">
-                        Email Success.
-                      </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                      <Button onClick={handleClose} autoFocus>
-                        OK
-                      </Button>
-                    </DialogActions>
-                  </Dialog>
-                </div>
-              ) : (
-                <div></div>
-              )}
+                helperText={errors.message?.message}
+              />
+            </FormControl>
+            <Button
+              variant="contained"
+              color="success"
+              type="submit"
+              onClick={handleClickOpen}
+            >
+              Submit
+            </Button>
+            {sentMail === true ? (
+              <div>
+                <Dialog
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="alert-dialog-title"
+                  aria-describedby="alert-dialog-description"
+                >
+                  <DialogTitle id="alert-dialog-title">
+                    Email has been sent successfully.
+                  </DialogTitle>
+                  <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                      Email Success.
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleClose} autoFocus>
+                      OK
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+              </div>
+            ) : (
+              <div></div>
+            )}
 
-              <Typography variant="body2" mt="10px">
-                By submitting this form, you agree to the{" "}
-                <span>
-                  <a href="">privacy policy </a>
-                </span>
-                &{" "}
-                <span>
-                  <a
-                    href="
+            <Typography variant="body2" mt="10px">
+              By submitting this form, you agree to the{" "}
+              <span>
+                <a href="">privacy policy </a>
+              </span>
+              &{" "}
+              <span>
+                <a
+                  href="
                   "
-                  >
-                    terms and conditions
-                  </a>
-                </span>
-              </Typography>
-            </Box>
+                >
+                  terms and conditions
+                </a>
+              </span>
+            </Typography>
           </Box>
-        </Container>
-      </div>
-    </React.Fragment>
+        </Box>
+      </Container>
+    </div>
   );
 }

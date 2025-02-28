@@ -44,7 +44,7 @@ export default function Aboutpage() {
   ];
 
   return (
-    <div className="container" id="about">
+    <div id="about" className="section">
       <div
         className="container-text"
         maxWidth="100%"
@@ -91,7 +91,7 @@ export default function Aboutpage() {
             }}
           >
             <strong>Shyam's</strong> journey from a plywood business to becoming
-            a successful interior designer in just two years is a testament to
+            a successful interior designer in just 4 years is a testament to
             his dedication and vision. Starting with a deep understanding of
             materials, he gradually expanded his expertise by exploring the art
             of interior design. His relentless efforts took him to places like
@@ -228,7 +228,7 @@ export default function Aboutpage() {
         <Box
           sx={{ width: "100%", overflow: "hidden", mt: 2, textAlign: "center" }}
         >
-          <Typography variant="h4" m="1rem 5rem">
+          <Typography variant="h3" m="4rem 5rem" fontWeight="600" color="darkgreen">
             Partners
           </Typography>
           <Marquee pauseOnHover speed={50}>

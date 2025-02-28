@@ -18,7 +18,7 @@ import img7 from "../assets/images/galleryImages/kitchen-1.jpg";
 import img8 from "../assets/images/galleryImages/kitchen-2.jpg";
 import img9 from "../assets/images/galleryImages/washroom-1.jpg";
 import img10 from "../assets/images/galleryImages/washroom-2.jpg";
-
+import CloseIcon from "@mui/icons-material/Close";
 
 const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9];
 
@@ -34,62 +34,68 @@ export default function Gallerypage() {
 
   // Close fullscreen mode
   const handleClose = () => {
+
     setOpen(false);
   };
 
   return (
-    <div id="gallery">
-
-    <Box sx={{ p: 2 }} m="0rem 0rem" textAlign="center" >
-      <Typography variant="h2" m="2rem 2rem">Images Gallery</Typography>
-      {/* Image Grid */}
-      <ImageList sx={{ width: "100%", height: "100%" }} cols={3} rowHeight={700}>
-        {images.map((item, index) => (
-          <ImageListItem key={item.img}>
-            <img
-              srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-              src={`${item}?w=164&h=164&fit=crop&auto=format`}
-              alt={item.title}
-              loading="lazy"
-              onClick={() => handleOpen(item)}
+    <div id="gallery" className="section">
+      <Box sx={{ p: 2 }} m="0rem 0rem" textAlign="center">
+        <Typography variant="h2" mt="3rem" mb="1rem" color="#dc8a34" fontWeight="600">
+          Images Gallery
+        </Typography>
+       
+        <ImageList
+          sx={{ width: "100%", height: "100%" }}
+          cols={3}
+          rowHeight={700}
+        >
+          {images.map((item, index) => (
+            <ImageListItem key={item.img}>
+              <img
+                key={index}
+                srcSet={`${item}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                src={`${item}?w=164&h=164&fit=crop&auto=format`}
+                alt={item.title}
+                loading="lazy"
+                onClick={() => handleOpen(item)}
               />
-          </ImageListItem>
-        ))}
-      </ImageList>
+            </ImageListItem>
+          ))}
+        </ImageList>
 
-      {/* Fullscreen Image Popup */}
-      <Dialog fullScreen open={open} onClose={handleClose}>
-        <Box
-          sx={{
-            position: "relative",
-            width: "100vw",
-            height: "100vh",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "black",
-          }}
-          >
-          <IconButton
-            sx={{ position: "absolute", top: 10, right: 10, color: "white" }}
-            onClick={handleClose}
-            >
-            {/* <CloseIcon /> */}
-          </IconButton>
+        {/* Fullscreen Image Popup */}
+        <Dialog fullScreen open={open} onClose={handleClose}>
           <Box
-            component="img"
-            src={selectedImage}
-            alt="Fullscreen Image"
             sx={{
-              maxWidth: "90%",
-              maxHeight: "90%",
-              borderRadius: "10px",
-              objectFit: "contain",
+              position: "relative",
+              height: "100vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "black",
             }}
+          >
+            <IconButton
+              sx={{ position: "absolute", top: 10, right: 10, color: "white" }}
+              onClick={handleClose}
+            >
+              <CloseIcon />
+            </IconButton>
+            <Box
+              component="img"
+              src={selectedImage}
+              alt="Fullscreen Image"
+              sx={{
+                maxWidth: "90%",
+                maxHeight: "90%",
+                borderRadius: "10px",
+                objectFit: "contain",
+              }}
             />
-        </Box>
-      </Dialog>
-    </Box>
-            </div>
+          </Box>
+        </Dialog>
+      </Box>
+    </div>
   );
 }

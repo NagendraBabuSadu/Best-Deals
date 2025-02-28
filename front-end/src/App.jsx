@@ -9,14 +9,12 @@ function App() {
   return (
     <>
       <Layout>
-        <Homepage />
+         <Homepage />
         <Gallerypage />
         <Aboutpage />
         <Contactpage />
       </Layout>
-      {/* <Homepage />
-      <Gallerypage />
-      <Aboutpage /> */}
+   
     </>
   );
 }

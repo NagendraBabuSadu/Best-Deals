@@ -228,7 +228,7 @@ export default function Aboutpage() {
         <Box
           sx={{ width: "100%", overflow: "hidden", mt: 2, textAlign: "center" }}
         >
-          <Typography variant="h4" m="1rem 5rem" fontWeight="600" color="darkgreen">
+          <Typography variant="h3" m="4rem 5rem" fontWeight="600" color="darkgreen">
             Partners
           </Typography>
           <Marquee pauseOnHover speed={50}>

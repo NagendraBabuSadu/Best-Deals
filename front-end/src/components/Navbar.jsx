@@ -1,51 +1,20 @@
+import bdLogo from "../assets/logos/bd-visitng card.jpg";
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  Button,
-  Card,
-  CardActionArea,
-  CardContent,
-  Dialog,
-  IconButton,
-  ImageList,
-  ImageListItem,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
-import bdLogo from "../assets/logos/best-deals-logo.png";
-import img1 from "../assets/images/galleryImages/hall-1.jpg";
-import img2 from "../assets/images/galleryImages/hall2.jpg";
-import img3 from "../assets/images/galleryImages/hall-3.jpg";
-import img4 from "../assets/images/galleryImages/bedroom-1.jpg";
-import img5 from "../assets/images/galleryImages/bedroom-2.jpg";
-import img6 from "../assets/images/galleryImages/bedroom-3.jpg";
-import img7 from "../assets/images/galleryImages/kitchen-1.jpg";
-import img8 from "../assets/images/galleryImages/kitchen-2.jpg";
-import img9 from "../assets/images/galleryImages/washroom-1.jpg";
-import img10 from "../assets/images/galleryImages/washroom-2.jpg";
-
-const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10];
 
 export default function Navbar() {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const [open, setOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState("");
-  const [opacity, setOpacity] = useState(1);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
   const navigationListData = [
     { name: "Home", path: "home" },
     { name: "Gallery", path: "gallery" },
     { name: "About", path: "about" },
     { name: "Contact", path: "contact" },
   ];
+  const [opacity, setOpacity] = useState(1);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleOpacityScroll = () => {
       const currentScrollY = window.scrollY;
-      setOpacity(currentScrollY > lastScrollY ? 0.4 : 1);
+      setOpacity(currentScrollY < lastScrollY ? 1 : 0.4);
       setLastScrollY(currentScrollY);
     };
 
@@ -62,26 +31,15 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleOpacityScroll);
       document
         .querySelector(".topNavbar")
-        .removeEventListener("mouseenter", handleMouseOver);
+        .addEventListener("mouseenter", handleMouseOver);
     };
   }, [lastScrollY]);
 
-  const handleOpen = (image) => {
-    setSelectedImage(image);
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
-    <div>
+    <div style={{ backgroundColor: "#f5f5f5" }}>
       <div
         className="topNavbar"
         style={{
-          position: "sticky",
-          top: "0",
           display: "flex",
           zIndex: "1000",
           backgroundColor: "white",
@@ -89,16 +47,22 @@ export default function Navbar() {
           height: "56px",
           opacity: opacity,
           transition: "opacity 0.3s ease-in-out",
+          maxHeight: "100%",
+          position: "fixed",
+          top: "0",
+          width: "100%"
         }}
       >
         <nav
           style={{
             color: "red",
             display: "flex",
-            alignItems: "center",
+            justifyContent: "center",
             gap: "2rem",
-            maxWidth: "1200px",
             margin: "0 auto",
+            width: "100%",
+            alignContent: "center"
+            // maxWidth: "1200px",
           }}
         >
           <div className="brand-logo">
@@ -113,13 +77,15 @@ export default function Navbar() {
           <div>
             <ol
               style={{
-                margin: "0rem 1rem",
-                height: "2.7rem",
+                margin: "0.4rem 1rem",
+                height: "2.8rem",
                 display: "flex",
                 position: "relative",
                 overflow: "hidden",
                 gap: "1rem",
                 width: "45rem",
+                justifyContent: "center",
+
               }}
             >
               {navigationListData.map((navItem, index) => (

@@ -2,14 +2,21 @@ import "./App.css";
 import Homepage from "./pages/Homepage";
 import Aboutpage from "./pages/Aboutpage";
 import Gallerypage from "./pages/Gallerypage";
-import { BrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
+import Layout from "./layout/Layout";
+import Contactpage from "./pages/Contactpage";
 
 function App() {
   return (
     <>
-      <Homepage />
+      <Layout>
+        <Homepage />
+        <Gallerypage />
+        <Aboutpage />
+        <Contactpage />
+      </Layout>
+      {/* <Homepage />
       <Gallerypage />
-      <Aboutpage />
+      <Aboutpage /> */}
     </>
   );
 }

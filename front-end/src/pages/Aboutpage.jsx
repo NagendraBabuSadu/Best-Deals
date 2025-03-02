@@ -5,7 +5,7 @@ import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import hyderabad from "../assets/images/Hyderabad.jpg";
 import junction from "../assets/images/junction.png";
-import Vijayawada from "../assets/images/vijayawada.jpg";
+import Vijayawada from "../assets/images/vijayawada.webp";
 import tiruvuru from "../assets/images/Tiruvuru.png";
 import Marquee from "react-fast-marquee";
 import { Card, CardMedia } from "@mui/material";

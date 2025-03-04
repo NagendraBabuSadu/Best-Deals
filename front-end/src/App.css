@@ -9,6 +9,10 @@ html {
   scroll-behavior: smooth;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 
 #root {
   width: 100%;
@@ -31,5 +35,23 @@ body {
   transform: scale(1.1);
   box-shadow: "0px 0px 3px 2px ";
 
+}
+
+@media only screen and (min-width: 640px) {
+  body {
+    /* background-color: lightblue; */
+  }
+}
+
+.topNavbar {
+  white-space: nowrap; /* Prevents wrapping */
+  overflow: hidden; /* Hides overflow text */
+  text-overflow: ellipsis; /* Shows '...' when text overflows */
+}
+
+@media only screen and (max-width: 640px) {
+  .topNavbar {
+    width: 100px; /* Adjust width as per your requirement */
+  }
 }
 

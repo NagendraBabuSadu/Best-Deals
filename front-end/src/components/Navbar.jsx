@@ -14,9 +14,8 @@ export default function Navbar() {
   const originalBackgroundColor = "#ffffff"; // Default color
 
   return (
-    <div style={{ overflow: "visible"}}>
-      <div
-        className="topNavbar"
+    <div style={{ overflow: "visible" }}>
+      <div className="topNavbar"
         style={{
           display: "flex",
           zIndex: "1000",
@@ -87,17 +86,18 @@ export default function Navbar() {
                     height: "2.7rem",
                     letterSpacing: "0.2rem",
                     border: "1px solid grey",
-                    backgroundColor: originalBackgroundColor
+                    backgroundColor: originalBackgroundColor,
                   }}
                   onMouseOver={(e) => {
-                    if (activeIndex !== index) { e.target.style.color = "yellow";
-                      e.target.style.backgroundColor = "black"
-                    } 
+                    if (activeIndex !== index) {
+                      e.target.style.color = "yellow";
+                      e.target.style.backgroundColor = "black";
+                    }
                   }}
                   onMouseOut={(e) => {
                     if (activeIndex !== index)
-                      e.target.style.color = originalColor; 
-                     e.target.style.backgroundColor = originalBackgroundColor
+                      e.target.style.color = originalColor;
+                    e.target.style.backgroundColor = originalBackgroundColor;
                   }}
                 >
                   {navItem.name}

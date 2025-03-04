@@ -8,49 +8,27 @@ export default function Navbar() {
     { name: "About", path: "about" },
     { name: "Contact", path: "contact" },
   ];
-  const [opacity, setOpacity] = useState(1);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
-  useEffect(() => {
-    const handleOpacityScroll = () => {
-      const currentScrollY = window.scrollY;
-      setOpacity(currentScrollY < lastScrollY ? 1 : 0.4);
-      setLastScrollY(currentScrollY);
-    };
-
-    const handleMouseOver = () => {
-      setOpacity(1);
-    };
-
-    window.addEventListener("scroll", handleOpacityScroll);
-    document
-      .querySelector(".topNavbar")
-      .addEventListener("mouseenter", handleMouseOver);
-
-    return () => {
-      window.removeEventListener("scroll", handleOpacityScroll);
-      document
-        .querySelector(".topNavbar")
-        .addEventListener("mouseenter", handleMouseOver);
-    };
-  }, [lastScrollY]);
+  const [activeIndex, setActiveIndex] = useState(null); // Track active item index
+  const originalColor = "#000000"; // Default color
+  const originalBackgroundColor = "#ffffff"; // Default color
 
   return (
-    <div style={{ backgroundColor: "#f5f5f5" }}>
+    <div style={{ overflow: "visible"}}>
       <div
         className="topNavbar"
         style={{
           display: "flex",
           zIndex: "1000",
-          backgroundColor: "white",
-          boxShadow: "0px 0px 10px 10px rgba(0, 0, 0, 0.8)",
-          height: "56px",
-          opacity: opacity,
+          background: "rgba(255, 255, 255, 0.2)",
+          boxShadow: "0px 0px 10px 10px rgba(0, 0, 0, 0.6)",
+          height: "64px",
+          justifyContent: "center",
           transition: "opacity 0.3s ease-in-out",
-          maxHeight: "100%",
           position: "fixed",
           top: "0",
-          width: "100%"
+          width: "100%",
+          backdropFilter: "blur(20px)",
         }}
       >
         <nav
@@ -59,10 +37,9 @@ export default function Navbar() {
             display: "flex",
             justifyContent: "center",
             gap: "2rem",
-            margin: "0 auto",
+            margin: "5px auto",
             width: "100%",
-            alignContent: "center"
-            // maxWidth: "1200px",
+            alignContent: "center",
           }}
         >
           <div className="brand-logo">
@@ -85,41 +62,42 @@ export default function Navbar() {
                 gap: "1rem",
                 width: "45rem",
                 justifyContent: "center",
-
               }}
             >
               {navigationListData.map((navItem, index) => (
                 <li
                   key={index}
-                  onClick={() =>
+                  onClick={() => {
                     document
                       .getElementById(navItem.path)
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
+                      ?.scrollIntoView({ behavior: "smooth" }),
+                      setActiveIndex(index);
+                  }}
                   style={{
                     listStyle: "none",
                     fontFamily: "Arial, sans-serif",
-                    fontSize: "1.4rem",
+                    fontSize: "1.6rem",
                     fontWeight: "600",
-                    padding: "0.5rem 2rem",
+                    padding: "0.4rem 2rem",
                     textAlign: "center",
-                    borderRadius: "8px",
+                    borderRadius: "4px",
                     cursor: "pointer",
                     transition: "all 0.3s ease-in-out",
-                    backgroundColor: "#f8f9fa",
-                    color: "#000000",
-                    border: "1px solid grey",
-                    boxShadow: "0px 0px 10px 5px rgba(0, 0.4, 1, 0.2)",
+                    color: activeIndex === index ? "red" : originalColor,
                     height: "2.7rem",
                     letterSpacing: "0.2rem",
+                    border: "1px solid grey",
+                    backgroundColor: originalBackgroundColor
                   }}
                   onMouseOver={(e) => {
-                    e.target.style.backgroundColor = "#f12311";
-                    e.target.style.color = "#ffffff";
+                    if (activeIndex !== index) { e.target.style.color = "yellow";
+                      e.target.style.backgroundColor = "black"
+                    } 
                   }}
-                  onMouseLeave={(e) => {
-                    e.target.style.backgroundColor = "#f8f9fa";
-                    e.target.style.color = "#000000";
+                  onMouseOut={(e) => {
+                    if (activeIndex !== index)
+                      e.target.style.color = originalColor; 
+                     e.target.style.backgroundColor = originalBackgroundColor
                   }}
                 >
                   {navItem.name}

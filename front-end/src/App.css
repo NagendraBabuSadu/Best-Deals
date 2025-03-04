@@ -23,7 +23,7 @@ html {
 
 body {
   width: 100%;
-  
+  /* overflow: visible; */
 }
 
 .contactCard:hover{

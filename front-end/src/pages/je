@@ -1,0 +1,205 @@
+
+   <Container
+        sx={{
+          position: "relative",
+          padding: 0,
+        }}
+      >
+        {/* Background Image */}
+        <img
+          component="img"
+          src={modernHouse}
+          alt="Modern House"
+          sx={{
+            objectFit: "cover",
+            height: "100vh", // Ensures it fills the full viewport height
+            width: "100%", // Ensures it fills the full viewport width
+            position: "relative",
+            top: 0,
+            backgroundColor: "blue"
+          }}
+        />
+        <Box
+          sx={{
+            position: "absolute",
+            // top: 100,
+            left: "-30%",
+            width: "100vw",
+            height: "100vh",
+            background:
+              "linear-gradient(to top, rgba(0, 0, 0.1, 0.1), rgb(7, 9, 12))",
+            opacity: 0.7, // Adjust opacity if needed
+            zIndex: 0, // Stays above the image
+          }}
+        ></Box>
+        {/* Text Content */}
+        <Container
+          sx={{
+            textAlign: "left",
+            textWrap: "pretty",
+            position: "absolute",
+
+            // left: "50%",
+            transform: "translate(-50%, 0%)",
+          }}
+        >
+          <Typography
+            variant="h2"
+            sx={{
+              color: "white",
+              mt: "2rem",
+            }}
+          >
+            Transform Your Space <br />
+            <strong style={{ color: "var(--primary-red-color)" }}>
+              Elevate Your Life
+            </strong>
+          </Typography>
+          </Container>
+          <Container
+            sx={{
+              textAlign: "left",
+              textWrap: "pretty",
+              position: "absolute",
+              top: "40%",
+              left: "70%",
+              transform: "translate(-50%, 0%)",
+              display: "flex",
+              border: "1rem solid white",
+              width: "40%",
+              backgroundColor: "var(--background-color)",
+              flexDirection: "column",
+              pb: "2rem",
+              borderRadius: "0rem 5rem",
+              boxShadow: "0rem 0rem 3rem 1rem ",
+            }}
+          >
+            <Typography
+              variant="h4"
+              m="1rem 0rem"
+              fontWeight="600"
+              // textTransform="uppercase"
+              sx={{
+                color: "var(--text-greenType-color)",
+              }}
+            >
+              Contact Us
+            </Typography>
+            <Box
+              component="form"
+              onSubmit={handleSubmit(onValid, onInvalid)}
+              noValidate
+            >
+              <FormControl
+                sx={{ pb: "1.4rem", width: "100%" }}
+                error={Boolean(errors.name)}
+              >
+                <TextField
+                  id="user-nameInput"
+                  label="Name"
+                  variant="outlined"
+                  placeholder="Enter Your Name"
+                  fullWidth
+                  {...register("name")}
+                  // value={formData.name}
+                  // onChange={handleChange}
+                  error={Boolean(errors.name)}
+                  helperText={errors.name?.message}
+                />
+              </FormControl>
+              <FormControl
+                sx={{ pb: "1.4rem", width: "100%" }}
+                error={Boolean(errors.email)}
+              >
+                <TextField
+                  id="user-emailInput"
+                  label="Email"
+                  variant="outlined"
+                  fullWidth
+                  placeholder="Enter Your Email"
+                  // value={formData.email}
+                  // onChange={handleChange}
+                  {...register("email")}
+                  error={Boolean(errors.email)}
+                  helperText={errors.email?.message}
+                />
+              </FormControl>
+              <FormControl
+                sx={{ pb: "1.4rem", width: "100%" }}
+                error={Boolean(errors.message)}
+              >
+                <TextField
+                  id="user-emailInput"
+                  label="Details"
+                  variant="outlined"
+                  placeholder="Enter Your Details"
+                  multiline
+                  minRows={3}
+                  InputProps={{
+                    sx: {
+                      padding: "1rem 0.8rem", // Adjust padding as needed
+                      textWrap: "pretty",
+                    },
+                  }}
+                  fullWidth
+                  // value={formData.email}
+                  // onChange={handleChange}
+                  {...register("message")}
+                  error={Boolean(errors.message)}
+                  helperText={errors.message?.message}
+                />
+              </FormControl>
+              <Button
+                variant="contained"
+                color="success"
+                type="submit"
+                onClick={handleClickOpen}
+              >
+                Send Email
+              </Button>
+              {sentMail === true ? (
+                <div>
+                  <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                  >
+                    <DialogTitle id="alert-dialog-title">
+                      {"Use Google's location service?"}
+                    </DialogTitle>
+                    <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                        Email Success.
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button onClick={handleClose} autoFocus>
+                        OK
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
+                </div>
+              ) : (
+                <div></div>
+              )}
+
+              <Typography variant="body2" mt="10px">
+                By submitting this form, you agree to the{" "}
+                <span>
+                  <a href="">privacy policy </a>
+                </span>
+                &{" "}
+                <span>
+                  <a
+                    href="
+                  "
+                  >
+                    terms and conditions
+                  </a>
+                </span>
+              </Typography>
+            </Box>
+          </Container>
+        </Container>
+      </Container>
